@@ -37,29 +37,30 @@ public abstract class FastDownloader implements CustomRegex {
         Downloader downloader = new Downloader(catalogUrl, this, threadCount);
         List<ChapterBuffer> books = downloader.download();
 
-        BufferedWriter bufferedWriter =
-                new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)));
-
-        books.forEach(chapter -> {
-            try {
-                //格式化
-                //章节名+换行+空行
-                bufferedWriter.write(chapter.name);
-                bufferedWriter.write("\n\n");
-                for (String line : chapter.content) {
-                    //4个空格+正文+换行+空行
-                    bufferedWriter.write("    ");
-                    bufferedWriter.write(line);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)))) {
+            books.forEach(chapter -> {
+                try {
+                    //格式化
+                    //章节名+换行+空行
+                    bufferedWriter.write(chapter.name);
                     bufferedWriter.write("\n\n");
+                    for (String line : chapter.content) {
+                        //4个空格+正文+换行+空行
+                        bufferedWriter.write("    ");
+                        bufferedWriter.write(line);
+                        bufferedWriter.write("\n\n");
+                    }
+                    //章节结束空三行，用来分割下一章节
+                    bufferedWriter.write("\n\n\n");
+                } catch (IOException e) {
+                    System.out.println("写入出错 ： " + chapter);
+                    e.printStackTrace();
                 }
-                //章节结束空三行，用来分割下一章节
-                bufferedWriter.write("\n\n\n");
-            } catch (IOException e) {
-                System.out.println("写入出错 ： " + chapter);
-                e.printStackTrace();
-            }
-        });
-        bufferedWriter.close();
+            });
+        }
+
+
+
         System.out.println("保存完成 ： " + filePath);
     }
 

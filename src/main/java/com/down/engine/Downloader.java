@@ -2,6 +2,7 @@ package com.down.engine;
 
 import com.down.bean.Chapter;
 import com.down.bean.ChapterBuffer;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ class Downloader {
     private String url;
     private CustomRegex regex;
     private ExecutorService threadPool;
+
 
     Downloader(String url, CustomRegex customRegex, int threadCount) {
         this.url = url;
