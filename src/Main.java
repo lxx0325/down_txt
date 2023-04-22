@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        FastDownloader downloader = new E8(bookName, "https://m.bqg116.com/html/76452/list.html", savePath);
+        FastDownloader downloader = new E8(bookName, "https://www.e8zw.com/book/595/595246/", savePath);
 
         //下载全部内容到一个txt文件里
         downloader.downloadTXT();
