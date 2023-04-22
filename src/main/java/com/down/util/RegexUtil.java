@@ -33,7 +33,9 @@ public class RegexUtil {
         //设置解析方式
         if (type == TYPE_EXCEPT) {
             regEx = Except(start, end);
-        } else regEx = Include(start, end);
+        } else {
+            regEx = Include(start, end);
+        }
         Pattern pattern = Pattern.compile(regEx);
         //将目标集合里的所有内容解析出来，放到这里的list里
         Matcher matcher = pattern.matcher(source);
@@ -46,12 +48,16 @@ public class RegexUtil {
     }
 
     public static List<String> regexInclude(String start, String end, String source) {
-        if (source == null || source.length() == 0) return new ArrayList<>();
+        if (source == null || source.length() == 0) {
+            return new ArrayList<>();
+        }
         return regex(start, end, source, TYPE_INCLUDE);
     }
 
     public static List<String> regexExcept(String start, String end, String source) {
-        if (source == null || source.length() == 0) return new ArrayList<>();
+        if (source == null || source.length() == 0) {
+            return new ArrayList<>();
+        }
         return regex(start, end, source, TYPE_EXCEPT);
     }
 
@@ -98,29 +104,37 @@ public class RegexUtil {
         }
 
         public String getTagName() {
-            if (tagName == null)
+            if (tagName == null) {
                 setTagName();
+            }
             return tagName;
         }
 
         private void setTagName() {
             Matcher matcher = Pattern.compile("<.*?/(.*?)>").matcher(getSuffix());
-            if (matcher.find())
+            if (matcher.find()) {
                 tagName = matcher.group(1);
-            if (tagName == null) tagName = "";
+            }
+            if (tagName == null) {
+                tagName = "";
+            }
         }
 
         public String getText() {
-            if (text == null)
+            if (text == null) {
                 setText();
+            }
             return text;
         }
 
         private void setText() {
             Matcher matcher = Pattern.compile("<.*?>([\\s\\S]*)<.*?>").matcher(getHtml());
-            if (matcher.find())
+            if (matcher.find()) {
                 text = matcher.group(1);
-            if (text == null) text = "";
+            }
+            if (text == null) {
+                text = "";
+            }
         }
 
         public String getHtml() {
@@ -128,8 +142,9 @@ public class RegexUtil {
         }
 
         public String getPrefix() {
-            if (prefix == null)
+            if (prefix == null) {
                 setSPfix();
+            }
             return prefix;
         }
 
@@ -143,8 +158,8 @@ public class RegexUtil {
                 suffix = matcher.group();
             }
 
-            if (prefix == null) prefix = "";
-            if (suffix == null) suffix = "";
+            if (prefix == null){ prefix = "";}
+            if (suffix == null) {suffix = "";}
         }
 
         public String getSuffix() {
@@ -157,10 +172,12 @@ public class RegexUtil {
         public String getValue(String key) {
             Matcher matcher = Pattern.compile(key + "='(.*?)'|" + key + "=\"(.*?)\"").matcher(getPrefix());
             while (matcher.find()) {
-                if (matcher.group(1) != null)
+                if (matcher.group(1) != null) {
                     return matcher.group(1);
-                if (matcher.group(2) != null)
+                }
+                if (matcher.group(2) != null) {
                     return matcher.group(2);
+                }
             }
             return "";
         }
