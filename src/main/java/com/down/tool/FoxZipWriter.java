@@ -1,4 +1,4 @@
-package tool;
+package com.down.tool;
 
 import java.io.BufferedInputStream;
 import java.io.File;

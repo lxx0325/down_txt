@@ -1,5 +1,7 @@
-import engine.FastDownloader;
-import source.E8;
+package com.down;
+
+import com.down.engine.FastDownloader;
+import com.down.source.E8;
 
 import java.io.IOException;
 

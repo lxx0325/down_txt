@@ -1,13 +1,12 @@
-package source;
+package com.down.source;
 
-import bean.Chapter;
-import bean.ChapterBuffer;
-import engine.FastDownloader;
-import util.RegexUtil;
+import com.down.bean.Chapter;
+import com.down.bean.ChapterBuffer;
+import com.down.engine.FastDownloader;
+import com.down.util.RegexUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

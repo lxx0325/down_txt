@@ -1,7 +1,7 @@
-package engine;
+package com.down.engine;
 
-import bean.Chapter;
-import bean.ChapterBuffer;
+import com.down.bean.Chapter;
+import com.down.bean.ChapterBuffer;
 
 import java.io.IOException;
 import java.util.ArrayList;

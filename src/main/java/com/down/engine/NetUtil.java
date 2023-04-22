@@ -1,12 +1,10 @@
-package engine;
+package com.down.engine;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
